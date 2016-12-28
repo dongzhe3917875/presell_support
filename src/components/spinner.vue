@@ -6,7 +6,7 @@
 	</ul>
 </template>
 <script>
-import { changeNumber, getNumberInfo, getPrice } from '../vuex/actions'
+import { changeNumber, getNumberInfo } from '../vuex/actions'
 import { productNumber } from '../vuex/getters'
 export default {
 	vuex: {
@@ -15,10 +15,10 @@ export default {
 		},
 		actions: {
 			changeNumber,
-			getNumberInfo,
-			getPrice
+			getNumberInfo
 		}
 	},
+	props: ['url'],
 	data () {
 		return {
 			num: 0,
@@ -28,7 +28,7 @@ export default {
 	},
 	watch: {
 		num (val) {
-			this.changeNumber(val)
+			this.changeNumber(val, this.url)
 		}
 	},
 	methods: {

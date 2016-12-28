@@ -5,10 +5,10 @@
 			<i class='fa fa-fw fa-question'></i>
 			<a href="https://gist.github.com/Turbo87/e8e941e68308d3b40ef6">参考链接</a>
 		</p>
-  	<simple-product></simple-product>
+  	<simple-product url='/api/get_price'></simple-product>
   	<div class='info'>
   		<price></price>
-  		<spinner></spinner>
+  		<spinner url='/api/get_price'></spinner>
   	</div>
   	<div>
   		<button @click='addToCart'>加入购物车</button><span><router-link to='/cart'>共{{group}}组</router-link></span>

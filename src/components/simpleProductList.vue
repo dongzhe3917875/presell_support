@@ -4,7 +4,7 @@
 			<li v-for = '(item, itemindex) in simpleProduct'>
 				<ul>
 					<h4>{{item.name}}</h4>
-					<li v-for = '(property, index) in item.data' class='item-style' :class="{choose: item.current == index}" @click= "changeSendData(index, itemindex)">
+					<li v-for = '(property, index) in item.data' class='item-style' :class="{choose: item.current == index}" @click= "changeData(index, itemindex)">
 						<span>{{property}}</span>
 					</li>
 				</ul>
@@ -54,11 +54,14 @@ export default {
 			changeSendData
 		}
 	},
+	props: ['url'],
 	data () {
 		return {}
 	},
 	methods: {
-
+		changeData (index, itemindex) {
+			this.changeSendData(index, itemindex, this.url)
+		}
 	},
 	created () {
 		this.getSimpleProduct()

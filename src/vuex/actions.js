@@ -10,10 +10,10 @@ export const changeClass = ({ dispatch }, index, itemindex) => {
 	dispatch(types.CHANGE_CLASS, index, itemindex)
 }
 
-export const changeSendData = ({ dispatch, state }, index, itemindex) => {
+export const changeSendData = ({ dispatch, state }, index, itemindex, url) => {
 	dispatch(types.CHANGE_CLASS, index, itemindex)
 	dispatch(types.CHANGE_SENDATA)
-	getPrice({ dispatch, state })
+	url && getPrice({ dispatch, state }, url)
 }
 
 export const getNumberInfo = ({ dispatch }, cb) => {
@@ -22,9 +22,9 @@ export const getNumberInfo = ({ dispatch }, cb) => {
 		cb(numberInfo)
 	})
 }
-export const changeNumber = ({ dispatch, state }, number) => {
+export const changeNumber = ({ dispatch, state }, number, url) => {
 	dispatch(types.CHANGE_NUMBER, number)
-	getPrice({ dispatch, state })
+	url && getPrice({ dispatch, state }, url)
 }
 export const addToCart = ({ dispatch, state }) => {
 	dispatch(types.ADD_TO_CART, state.simpleProduct)
@@ -51,11 +51,12 @@ export const makeOrder = ({ dispatch, state }, ids, router) => {
 	})
 }
 export const changeMakeStatus = ({ dispatch, state }, status) => dispatch(types.CHANGE_MAKE_STATUS, status)
-export const getPrice = ({ dispatch, state }) => {
+// getPrice 也要分离出来
+export const getPrice = ({ dispatch, state }, url) => {
 	var { size, color, quality } = JSON.parse(JSON.stringify(state.simpleProduct.sendData))
 	var num = JSON.parse(JSON.stringify(state.simpleProduct.num)).currentNum
 	shop.processAjax({
-		url: '/api/get_price',
+		url,
 		params: {
 			size: size,
 			color: color,
