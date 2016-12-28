@@ -62,4 +62,16 @@ export const getPrice = ({ dispatch, state }) => {
 		cb: cost => dispatch(types.GET_PRICE, cost)
 	})
 }
+export const incrementCounter = function ({
+	dispatch,
+	state
+}) {
+	dispatch('INCREMENT', 1)
+}
+export const changeActive = function ({
+	dispatch,
+	state
+}, index) {
+	dispatch('CHANGEACTIVE', index)
+}
 

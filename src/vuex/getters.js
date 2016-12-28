@@ -5,3 +5,5 @@ export const price = state => state.simpleProduct.cost
 export const productList = state => state.productList.product_list
 export const makeOrderList = state => state.makeOrder.makeOrderList
 export const makeSure = state => state.makeOrder.makeSure
+export const getCount = state => state.select.count
+export const getInfo = state => state.select.select_info

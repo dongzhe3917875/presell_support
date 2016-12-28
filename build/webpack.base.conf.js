@@ -2,6 +2,7 @@ var path = require('path')
 // 引入config 默认是config下面的index 可以指定文件的名字 比如config.dev.env
 var config = require('../config')
 var utils = require('./utils')
+var webpack = require('webpack')
 // 解析出来一个绝对地址
 var projectRoot = path.resolve(__dirname, '../')
 
@@ -32,7 +33,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'modulesJS': path.join(__dirname, '../node_modules'),
+      'plugin': path.join(__dirname, '../static/plugin')
     }
   },
   resolveLoader: {
@@ -96,5 +99,15 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
+  },
+  externals: {
+    'jquery': 'jQuery'
   }
+
+  // plugins: [
+  //   new webpack.ProvidePlugin({
+  //     jQuery: 'jquery',
+  //     $: 'jquery'
+  //   })
+  // ]
 }
