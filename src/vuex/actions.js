@@ -16,11 +16,14 @@ export const changeSendData = ({ dispatch, state }, index, itemindex) => {
 	getPrice({ dispatch, state })
 }
 
-export const getNumberInfo = ({ dispatch }) => {
-	shop.getNumberInfo(numberInfo => dispatch(types.GET_NUMBER_INFO, numberInfo))
+export const getNumberInfo = ({ dispatch }, cb) => {
+	shop.getNumberInfo(numberInfo => {
+		dispatch(types.GET_NUMBER_INFO, numberInfo)
+		cb(numberInfo)
+	})
 }
-export const changeNumber = ({ dispatch, state }, number, type) => {
-	dispatch(types.CHANGE_NUMBER, number, type)
+export const changeNumber = ({ dispatch, state }, number) => {
+	dispatch(types.CHANGE_NUMBER, number)
 	getPrice({ dispatch, state })
 }
 export const addToCart = ({ dispatch, state }) => {

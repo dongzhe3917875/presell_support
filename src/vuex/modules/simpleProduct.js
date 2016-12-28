@@ -33,29 +33,8 @@ const mutations = {
 	[GET_NUMBER_INFO] (state, numberInfo) {
 		state.num = numberInfo
 	},
-	[CHANGE_NUMBER] (state, number, type = 'setting') {
-		let num = parseInt(number)
-		let min = state.num.min
-		let max = state.num.max
-		if (Number.isNaN(num) || num < min) {
-			num = min
-			state.num.currentNum = num
-			return false
-		}
-		if (num > max) {
-			num = max
-			state.num.currentNum = num
-			return false
-		}
-		switch (type) {
-		case 'plus':
-			num >= max ? max : num++
-			break
-		case 'minus':
-			num <= min ? min : num--
-			break
-		}
-		state.num.currentNum = num
+	[CHANGE_NUMBER] (state, number) {
+		state.num.currentNum = number
 	},
 	[ADD_TO_CART] (state) {
 	},
