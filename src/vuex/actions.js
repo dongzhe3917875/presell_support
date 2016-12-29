@@ -13,6 +13,7 @@ export const changeClass = ({ dispatch }, index, itemindex) => {
 export const changeSendData = ({ dispatch, state }, index, itemindex, url) => {
 	dispatch(types.CHANGE_CLASS, index, itemindex)
 	dispatch(types.CHANGE_SENDATA)
+	console.log(url)
 	url && getPrice({ dispatch, state }, url)
 }
 
@@ -56,7 +57,7 @@ export const getPrice = ({ dispatch, state }, url) => {
 	var { size, color, quality } = JSON.parse(JSON.stringify(state.simpleProduct.sendData))
 	var num = JSON.parse(JSON.stringify(state.simpleProduct.num)).currentNum
 	shop.processAjax({
-		url: '/dongzhe/get_price',
+		url,
 		params: {
 			size: size,
 			color: color,
