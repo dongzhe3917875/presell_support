@@ -1,6 +1,5 @@
 <template>
 	<div class="product-list">
-		<router-link to='/add_cart' replace>返回</router-link>
 		<h3>商品列表</h3>
 		<ul>
 			<li v-for='(item, index) in productList'>

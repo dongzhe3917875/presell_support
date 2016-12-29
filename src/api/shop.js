@@ -53,6 +53,16 @@ export default {
 			cb: cb
 		})
 	},
+	getPrice (config) {
+		ajax(config)
+	},
+	makeOrder ({ params, cb }) {
+		ajax({
+			url: '/dongzhe/make_order',
+			params,
+			cb
+		})
+	},
 	getSimpleProduct (cb) {
 		ajax({
 			url: '/dongzhe/purchase/detail',
