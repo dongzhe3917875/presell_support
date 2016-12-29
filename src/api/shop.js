@@ -19,21 +19,22 @@ const _products = [{
 	'inventory': 5
 }]
 
-// const _simpleProduct = [{
-// 	name: 'color',
-// 	current: 0,
-// 	data: ['red', 'green', 'yellow']
-// }, {
-// 	name: 'size',
-// 	current: 1,
-// 	data: ['M', 'L', 'XL', 'XXL']
-// }, {
-// 	name: 'quality',
-// 	current: 2,
-// 	data: ['MORMAL', 'GOOD', 'EXCELLENT']
-// }]
-function processAjax ({ url, params = {}, cb }) {
-	axios.get(url, { params })
+function ajax ({
+	url,
+	params = {},
+	cb,
+	method = 'get'
+}) {
+	var basicConfig = {
+		method,
+		url
+	}
+	var config = Object.assign({}, basicConfig, (method === 'post' ? {
+		data: params
+	} : {
+		params
+	}))
+	axios(config)
 		.then(function (response) {
 			cb(response.data)
 		})
@@ -42,18 +43,18 @@ function processAjax ({ url, params = {}, cb }) {
 		})
 }
 export default {
-	processAjax,
+	ajax,
 	getProducts (cb) {
 		setTimeout(() => cb(_products), 100)
 	},
 	getNumberInfo (cb) {
-		processAjax({
+		ajax({
 			url: '/dongzhe/number_info',
 			cb: cb
 		})
 	},
 	getSimpleProduct (cb) {
-		processAjax({
+		ajax({
 			url: '/dongzhe/purchase/detail',
 			cb: cb
 		})
