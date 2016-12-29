@@ -13,8 +13,8 @@ const state = {
 
 const mutations = {
 	[SIMPLE_PRODUCT] (state, simpleProduct) {
-		state.items = simpleProduct.properties
-		state.cost = simpleProduct.cost
+		state.items = simpleProduct.res.properties
+		state.cost = simpleProduct.res.price
 		mutations[[CHANGE_SENDATA]](state)
 	},
 	[CHANGE_CLASS] (state, index, itemindex) {
@@ -23,12 +23,12 @@ const mutations = {
 	[CHANGE_SENDATA] (state) {
 		Object.keys(state.sendData).forEach(item => {
 			let match = state.items.find(p => p.name === item)
-			state.sendData[item] = match.data[match.current]
+			state.sendData[item] = match.type[match.current]
 		})
 		console.log(JSON.parse(JSON.stringify(state.sendData)))
 	},
 	[GET_PRICE] (state, cost) {
-		state.cost = cost.cost
+		state.cost = cost.price
 	},
 	[GET_NUMBER_INFO] (state, numberInfo) {
 		state.num = numberInfo

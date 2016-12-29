@@ -48,13 +48,13 @@ export default {
 	},
 	getNumberInfo (cb) {
 		processAjax({
-			url: '/api/number_info',
+			url: '/dongzhe/number_info',
 			cb: cb
 		})
 	},
 	getSimpleProduct (cb) {
 		processAjax({
-			url: '/api/test',
+			url: '/dongzhe/purchase/detail',
 			cb: cb
 		})
 		// setTimeout(() => cb(_simpleProduct), 500)

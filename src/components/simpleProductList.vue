@@ -4,7 +4,7 @@
 			<li v-for = '(item, itemindex) in simpleProduct'>
 				<ul>
 					<h4>{{item.name}}</h4>
-					<li v-for = '(property, index) in item.data' class='item-style' :class="{choose: item.current == index}" @click= "changeData(index, itemindex)">
+					<li v-for = '(property, index) in item.type_cn' class='item-style' :class="{choose: item.current == index}" @click= "changeSendData(index, itemindex)">
 						<span>{{property}}</span>
 					</li>
 				</ul>
