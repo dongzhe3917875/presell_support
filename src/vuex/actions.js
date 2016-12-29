@@ -36,7 +36,7 @@ export const gotoOrder = ({ dispatch, state }, ids, router) => {
 }
 export const makeOrder = ({ dispatch, state }, ids, router) => {
 	shop.processAjax({
-		url: '/api/make_order',
+		url: '/dongzhe/make_order',
 		params: {
 			ids
 		},
@@ -52,7 +52,7 @@ export const getPrice = ({ dispatch, state }) => {
 	var { size, color, quality } = JSON.parse(JSON.stringify(state.simpleProduct.sendData))
 	var num = JSON.parse(JSON.stringify(state.simpleProduct.num)).currentNum
 	shop.processAjax({
-		url: '/api/get_price',
+		url: '/dongzhe/get_price',
 		params: {
 			size: size,
 			color: color,
