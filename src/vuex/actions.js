@@ -13,7 +13,6 @@ export const changeClass = ({ dispatch }, index, itemindex) => {
 export const changeSendData = ({ dispatch, state }, index, itemindex, url) => {
 	dispatch(types.CHANGE_CLASS, index, itemindex)
 	dispatch(types.CHANGE_SENDATA)
-	console.log(url)
 	url && getPrice({ dispatch, state }, url)
 }
 
@@ -28,7 +27,11 @@ export const changeNumber = ({ dispatch, state }, number, url) => {
 	url && getPrice({ dispatch, state }, url)
 }
 export const addToCart = ({ dispatch, state }) => {
-	dispatch(types.ADD_TO_CART, state.simpleProduct)
+	var params = getParam({ dispatch, state })
+	shop.addToCart({
+		params,
+		cb: data => dispatch(types.ADD_TO_CART, state.simpleProduct)
+	})
 }
 export const deleteCart = ({ dispatch, state }, id) => {
 	dispatch(types.DETELE_CART, id)
@@ -50,17 +53,21 @@ export const makeOrder = ({ dispatch, state }, ids, router) => {
 		}
 	})
 }
+
+var getParam = ({ dispatch, state }) => {
+	var { size, color, quality } = JSON.parse(JSON.stringify(state.simpleProduct.sendData))
+	var num = JSON.parse(JSON.stringify(state.simpleProduct.num)).currentNum
+	return {
+		size,
+		color,
+		quality,
+		num
+	}
+}
 export const changeMakeStatus = ({ dispatch, state }, status) => dispatch(types.CHANGE_MAKE_STATUS, status)
 // getPrice 也要分离出来
 export const getPrice = ({ dispatch, state }, url) => {
-	var { size, color, quality } = JSON.parse(JSON.stringify(state.simpleProduct.sendData))
-	var num = JSON.parse(JSON.stringify(state.simpleProduct.num)).currentNum
-	var params = {
-		size: size,
-		color: color,
-		quality: quality,
-		num: num
-	}
+	var params = getParam({ dispatch, state })
 	shop.getPrice({
 		url,
 		params,

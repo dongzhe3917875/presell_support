@@ -2,6 +2,7 @@ import Demo from './Demo.vue'
 import Index from './Index.vue'
 import productList from './components/productList'
 import makeOrder from './components/makeOrder'
+import address from './components/address'
 export default [{
 	path: '/',
 	component: Index
@@ -14,4 +15,7 @@ export default [{
 }, {
 	path: '/make_order',
 	component: makeOrder
+}, {
+	path: '/address/add',
+	component: address
 }]

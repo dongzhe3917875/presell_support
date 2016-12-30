@@ -23,16 +23,18 @@ export default {
 		return {
 			num: 0,
 			min: 0,
-			max: 0
+			max: 0,
+			numfromInit: true
 		}
 	},
 	watch: {
 		num (val) {
-			this.changeNumber(val, this.url)
+			!this.numfromInit && this.changeNumber(val, this.url)
 		}
 	},
 	methods: {
 		changeNum (type) {
+			this.numfromInit = false
 			let min = this.min
 			let max = this.max
 			if (Number.isNaN(parseInt(this.num)) || this.num < min) {

@@ -63,6 +63,14 @@ export default {
 			cb
 		})
 	},
+	addToCart ({ params, cb }) {
+		ajax({
+			url: '/dongzhe/cart/add',
+			method: 'post',
+			params,
+			cb
+		})
+	},
 	getSimpleProduct (cb) {
 		ajax({
 			url: '/dongzhe/purchase/detail',

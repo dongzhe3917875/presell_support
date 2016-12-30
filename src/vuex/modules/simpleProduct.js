@@ -25,10 +25,9 @@ const mutations = {
 			let match = state.items.find(p => p.name === item)
 			state.sendData[item] = match.type[match.current]
 		})
-		console.log(JSON.parse(JSON.stringify(state.sendData)))
 	},
 	[GET_PRICE] (state, cost) {
-		state.cost = cost.price
+		state.cost = cost.res.price
 	},
 	[GET_NUMBER_INFO] (state, numberInfo) {
 		state.num = numberInfo

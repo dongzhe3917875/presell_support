@@ -15,7 +15,7 @@ var router = new VueRouter({
 	mode: 'history',
 	routes
 })
-router.replace({ path: '/add_cart' })
+// router.replace({ path: '/add_cart' })
 var vm = new Vue({
 	el: '#app',
 	store,
