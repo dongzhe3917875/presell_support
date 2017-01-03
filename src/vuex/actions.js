@@ -36,6 +36,17 @@ export const addToCart = ({ dispatch, state }) => {
 export const deleteCart = ({ dispatch, state }, id) => {
 	dispatch(types.DETELE_CART, id)
 }
+
+export const getAddress = ({ dispatch, state }) => {
+	shop.getAddress(address => {
+		dispatch(types.GET_ADDRESS, address)
+	})
+}
+export const chooseAddress = ({ dispatch }, item, router) => {
+	dispatch(types.CHOOSE_ADDRESS, item)
+	router.push('/make_order')
+}
+
 export const gotoOrder = ({ dispatch, state }, ids, router) => {
 	router.push('/make_order')
 	var makeOrderList = state.productList.product_list.filter(item => ids.includes(item.id))

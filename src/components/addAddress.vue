@@ -36,7 +36,17 @@ export default {
 			chooseCounty: ''
 		}
 	},
+	props: ['addInfo'],
 	mounted () {
+		if (!this.addInfo.data) {
+			this.chooseCounty = '0;请选择'
+			this.chooseCity = '1;东城区'
+			this.chooseProvince = '1;北京'
+			this.proIndex = 1
+			this.cityIndex = 1
+			this.countyIndex = 0
+			return
+		}
 		this.chooseCounty = '3;桥西区'
 		this.chooseCity = '1;石家庄'
 		this.chooseProvince = '11;河北'

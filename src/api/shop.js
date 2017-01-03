@@ -18,7 +18,28 @@ const _products = [{
 	'price': 19.99,
 	'inventory': 5
 }]
-
+const _address = {
+	'res': [{
+		'province': '北京市',
+		'phone': '13552266949',
+		'address_id': 1,
+		'name': '范晓宇',
+		'address': '酒仙桥6号院电子国际总部',
+		'default': 1,
+		'country': '中国',
+		'region': '朝阳区'
+	}, {
+		'province': '北京市',
+		'phone': '18966677772',
+		'address_id': 2,
+		'name': '李颖',
+		'address': '酒仙桥6号院电子国际总部',
+		'default': 0,
+		'country': '中国',
+		'region': '朝阳区'
+	}],
+	'reason': ''
+}
 function ajax ({
 	url,
 	params = {},
@@ -62,6 +83,9 @@ export default {
 			params,
 			cb
 		})
+	},
+	getAddress (cb) {
+		setTimeout(() => cb(_address), 100)
 	},
 	addToCart ({ params, cb }) {
 		ajax({

@@ -5,3 +5,6 @@ export const price = state => state.simpleProduct.cost
 export const productList = state => state.productList.product_list
 export const makeOrderList = state => state.makeOrder.makeOrderList
 export const makeSure = state => state.makeOrder.makeSure
+export const addressList = state => state.address.addressList
+export const defaultAddress = state => state.address.defaultAddress
+export const chooseAddr = state => state.address.chooseAddress

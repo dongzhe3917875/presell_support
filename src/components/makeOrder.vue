@@ -1,5 +1,18 @@
 <template>
 	<div>
+		<div class='address'>
+			<a href="javascript:;" @click='addAddress'>
+				<ul>
+					<li>
+						<span>手机: {{CchooseAddr.phone}}; 姓名：{{CchooseAddr.name}}</span>
+					</li>
+					<li>
+						<span>{{CchooseAddr.province}}; {{CchooseAddr.address}}</span>
+					</li>
+				</ul>
+			</a>
+			<!-- <a href="javascript:;" @click='chooseAddress'>选择地址</a> -->
+		</div>
 		<ul>
 			<li v-for='(item, index) in makeOrderList'>
 				<span>颜色: {{item.properties.color}}</span>
@@ -19,27 +32,39 @@
 	</div>
 	
 </template>
+<style lang='less'>
+	.addAddress {
+		display: block;
+	}
+</style>
 <script>
-import { makeOrderList, makeSure } from '../vuex/getters'
+import { makeOrderList, makeSure, defaultAddress, chooseAddr } from '../vuex/getters'
 import { generate } from '../util/general'
-import { makeOrder, changeMakeStatus } from '../vuex/actions'
+import { makeOrder, changeMakeStatus, getAddress } from '../vuex/actions'
 export default {
 	vuex: {
 		getters: {
 			makeOrderList,
-			makeSure
+			makeSure,
+			defaultAddress,
+			chooseAddr
 		},
 		actions: {
 			makeOrder,
-			changeMakeStatus
+			changeMakeStatus,
+			getAddress
 		}
 	},
 	data () {
 		return {
-			isShow: false
+			isShow: false,
+			address: false
 		}
 	},
 	computed: {
+		CchooseAddr () {
+			return this.chooseAddr || this.defaultAddress
+		},
 		total () {
 			return this.makeOrderList.reduce(generate(this.add), 0)
 		},
@@ -48,6 +73,13 @@ export default {
 		}
 	},
 	methods: {
+		addAddress () {
+			this.address = true
+			this.$router.push({
+				name: 'addressList'
+				// params: { type: 'default', data: null }
+			})
+		},
 		makePurchase () {
 			this.makeOrder(this.ids, this.$router)
 		},
@@ -65,6 +97,11 @@ export default {
 		}
 	},
 	beforeRouteLeave (to, from, next) {
+		if (this.address) {
+			next()
+			this.address = false
+			return
+		}
 		this.isShow = true
 		if (this.makeSure) {
 			next()
@@ -75,6 +112,9 @@ export default {
 	mounted () {
 		this.changeMakeStatus(false)
 		this.isShow = false
+	},
+	created () {
+		this.getAddress()
 	}
 }
 </script>

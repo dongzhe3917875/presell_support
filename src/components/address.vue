@@ -6,7 +6,7 @@
 		<div class="form-group">
 			<input type="text" name="phone" placeholder="手机号码">
 		</div>
-		<add-address></add-address>	
+		<add-address :addInfo='addressInfo'></add-address>	
 		<div class="form-group">
 			<input type="text" name="detail" placeholder="详情地址">
 		</div>
@@ -17,6 +17,14 @@ import addAddress from './addAddress.vue'
 export default {
 	components: {
 		addAddress
+	},
+	data () {
+		return {
+			addressInfo: null
+		}
+	},
+	created () {
+		this.addressInfo = this.$route.params
 	}
 }
 </script>
