@@ -1,13 +1,13 @@
 <template>
 	<div class="address_list">
 		<ul>
-			<li v-for='(item, index) in addressList' @click='choose(item)'>
-			<div class='addressInfo address'>
+			<li v-for='(item, index) in addressList'>
+			<div class='addressInfo address' @click='choose(item)'>
 				<p>
 					<span>手机: {{item.phone}}; 姓名：{{item.name}}</span>
 				</p>
 				<p>
-					<span>{{item.province}}; {{item.address}}</span>
+					<span>{{item.province|city}};{{item.region|city}};{{item.address}}</span>
 				</p>
 			</div>
 			<div class='addressOperation address'>
@@ -29,14 +29,15 @@
 </style>
 <script>
 import { addressList } from '../vuex/getters'
-import { chooseAddress } from '../vuex/actions'
+import { chooseAddress, getAddress } from '../vuex/actions'
 export default {
 	vuex: {
 		getters: {
 			addressList
 		},
 		actions: {
-			chooseAddress
+			chooseAddress,
+			getAddress
 		}
 	},
 	methods: {
@@ -46,12 +47,30 @@ export default {
 		newAddress () {
 			this.$router.push({
 				name: 'address',
-				params: { type: 'default', data: null }
+				params: {
+					type: 'default',
+					data: {
+						province: '1;北京',
+						region: '1;东城区'
+					}
+				}
 			})
 		},
-		editAddress (param) {
-
+		editAddress (item) {
+			this.$router.push({
+				name: 'address',
+				params: {
+					type: 'default',
+					data: {
+						province: item.province,
+						region: item.region
+					}
+				}
+			})
 		}
+	},
+	created () {
+		this.getAddress()
 	}
 }
 </script>

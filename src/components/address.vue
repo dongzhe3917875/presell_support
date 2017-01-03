@@ -24,7 +24,13 @@ export default {
 		}
 	},
 	created () {
-		this.addressInfo = this.$route.params
+		this.addressInfo = this.$route.params.data ? this.$route.params : {
+			type: 'default',
+			data: {
+				province: '1;北京',
+				region: '1;东城区'
+			}
+		}
 	}
 }
 </script>

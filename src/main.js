@@ -7,9 +7,11 @@ import Index from './Index'
 import store from './vuex/store'
 import {
 	currency
-} from './currency'
+} from './filter/currency'
 import 'font-awesome/css/font-awesome.css'
+import { city } from './filter/city'
 Vue.filter('currency', currency)
+Vue.filter('city', city)
 Vue.use(VueRouter)
 var router = new VueRouter({
 	mode: 'history',

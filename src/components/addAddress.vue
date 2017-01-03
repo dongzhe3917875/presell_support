@@ -38,23 +38,17 @@ export default {
 	},
 	props: ['addInfo'],
 	mounted () {
-		if (!this.addInfo.data) {
-			this.chooseCounty = '0;请选择'
-			this.chooseCity = '1;东城区'
-			this.chooseProvince = '1;北京'
-			this.proIndex = 1
-			this.cityIndex = 1
-			this.countyIndex = 0
-			return
-		}
-		this.chooseCounty = '3;桥西区'
-		this.chooseCity = '1;石家庄'
-		this.chooseProvince = '11;河北'
-		this.proIndex = 11
-		this.cityIndex = 1
-		this.countyIndex = 3
+		this.processData(this.addInfo.data)
 	},
 	methods: {
+		processData (data) {
+			this.chooseProvince = data.province
+			this.chooseCity = data.region
+			this.chooseCounty = '0;请选择'
+			this.proIndex = data.province.split(';')[0]
+			this.cityIndex = data.region.split(';')[0]
+			this.countyIndex = 0
+		},
 		ProvinceToCity (target) {
 			this.proIndex = target.split(';')[0]
 			this.province = target.split(';')[1]

@@ -20,23 +20,23 @@ const _products = [{
 }]
 const _address = {
 	'res': [{
-		'province': '北京市',
+		'province': '1;北京',
 		'phone': '13552266949',
 		'address_id': 1,
 		'name': '范晓宇',
 		'address': '酒仙桥6号院电子国际总部',
 		'default': 1,
 		'country': '中国',
-		'region': '朝阳区'
+		'region': '5;朝阳区'
 	}, {
-		'province': '北京市',
-		'phone': '18966677772',
+		'province': '11;河北',
+		'phone': '17801078112',
 		'address_id': 2,
-		'name': '李颖',
-		'address': '酒仙桥6号院电子国际总部',
+		'name': '董哲',
+		'address': '中华南大街166号神秘基地',
 		'default': 0,
 		'country': '中国',
-		'region': '朝阳区'
+		'region': '1;石家庄'
 	}],
 	'reason': ''
 }
