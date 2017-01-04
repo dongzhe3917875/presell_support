@@ -7,7 +7,7 @@
 						<span>手机: {{CchooseAddr.phone}}; 姓名：{{CchooseAddr.name}}</span>
 					</li>
 					<li>
-						<span>{{CchooseAddr.province|city}}; {{CchooseAddr.address}}</span>
+						<span>{{CchooseAddr.province}}; {{CchooseAddr.address}}</span>
 					</li>
 				</ul>
 			</a>
