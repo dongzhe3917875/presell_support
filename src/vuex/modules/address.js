@@ -1,7 +1,7 @@
-import { CHANGE_DEFAULT, GET_ADDRESS, CHOOSE_ADDRESS } from '../mutation-types'
+import { CHANGE_DEFAULT, GET_ADDRESS, CHOOSE_ADDRESS, DELETE_ADDRESS } from '../mutation-types'
 const state = {
 	addressList: [],
-	defaultAddress: {},
+	defaultAddress: null,
 	chooseAddress: null
 }
 const mutations = {
@@ -9,11 +9,22 @@ const mutations = {
 		console.log('ll')
 	},
 	[GET_ADDRESS] (state, address) {
-		state.addressList = address.res
-		state.defaultAddress = state.addressList.find(item => item.default === 1)
+		address.res.default && address.res.other.unshift(address.res.default)
+		state.addressList = address.res.other
+		state.defaultAddress = address.res.default
 	},
 	[CHOOSE_ADDRESS] (state, chooseAddr) {
-		state.chooseAddress = state.addressList.find(item => item.address_id === chooseAddr.address_id)
+		state.chooseAddress = state.addressList.find(item => item.id === chooseAddr.id)
+	},
+	[DELETE_ADDRESS] (state, addressID, defaultAddressID) {
+		state.addressList.splice(state.addressList.findIndex(ele => ele.id === addressID), 1)
+		state.addressList.forEach(ele => {
+			if (ele.id === defaultAddressID) {
+				ele.default = true
+			} else {
+				ele.default = false
+			}
+		})
 	}
 }
 export default {

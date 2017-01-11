@@ -32,6 +32,10 @@ module.exports = {
       '/image': {
           target: 'http://45.62.108.67',
           changeOrigin: true
+      },
+      '/api': {
+        target: 'http://preseller.gsteps.cn',
+        changeOrigin: true
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

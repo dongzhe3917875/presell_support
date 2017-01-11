@@ -38,16 +38,21 @@ export default {
 	},
 	props: ['addInfo'],
 	mounted () {
+		this.addInfo.params = {
+			province: this.addInfo.data.province,
+			municipality: this.addInfo.data.municipality,
+			region: this.addInfo.data.region
+		}
 		this.processData(this.addInfo.data)
 	},
 	methods: {
 		processData (data) {
 			this.chooseProvince = data.province
-			this.chooseCity = data.region
-			this.chooseCounty = '0;请选择'
+			this.chooseCity = data.municipality
+			this.chooseCounty = data.region
 			this.proIndex = data.province.split(';')[0]
-			this.cityIndex = data.region.split(';')[0]
-			this.countyIndex = 0
+			this.cityIndex = data.municipality.split(';')[0]
+			this.countyIndex = data.region.split(';')[0]
 		},
 		ProvinceToCity (target) {
 			this.proIndex = target.split(';')[0]
@@ -74,13 +79,19 @@ export default {
 		changeProvince (event) {
 			this.chooseProvince = event.target.value
 			this.ProvinceToCity(this.chooseProvince)
+			this.addInfo.params.province = this.chooseProvince
+			this.addInfo.params.municipality = this.chooseCity
 		},
 		changeCity (event) {
 			this.CityToCounty(event.target.value)
+			this.addInfo.params.municipality = this.chooseCity
+			this.addInfo.params.region = this.chooseCounty
 		},
 		changeCounty (event) {
 			this.countyIndex = event.target.value.split(';')[0]
 			this.county = event.target.value.split(';')[1]
+			this.chooseCounty = event.target.value
+			this.addInfo.params.region = this.chooseCounty
 		}
 	}
 }

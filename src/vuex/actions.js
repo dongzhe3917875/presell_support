@@ -42,6 +42,38 @@ export const getAddress = ({ dispatch, state }) => {
 		dispatch(types.GET_ADDRESS, address)
 	})
 }
+export const addAddressAction = ({ dispatch, state }, params, router) => {
+	shop.addAddress({
+		params,
+		cb: data => {
+			data.msg === 'success' && router.push('/address_list')
+		}
+	})
+}
+export const deleteAddressAction = ({ dispatch, state }, params) => {
+	shop.deleteAddress({
+		params,
+		cb: data => {
+			dispatch(types.DELETE_ADDRESS, params.address_id, data.res.default_address_id)
+		}
+	})
+}
+export const chooseDefultAction = ({ dispatch, state }, params, router) => {
+	shop.chooseDefultAddress({
+		params,
+		cb: data => {
+			data.msg === 'success' && getAddress({ dispatch, state })
+		}
+	})
+}
+export const editAddressAction = ({ dispatch, state }, params, router) => {
+	shop.editAddress({
+		params,
+		cb: data => {
+			data.msg === 'success' && router.push('/address_list')
+		}
+	})
+}
 export const chooseAddress = ({ dispatch }, item, router) => {
 	dispatch(types.CHOOSE_ADDRESS, item)
 	router.push('/make_order')

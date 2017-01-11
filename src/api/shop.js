@@ -18,28 +18,6 @@ const _products = [{
 	'price': 19.99,
 	'inventory': 5
 }]
-const _address = {
-	'res': [{
-		'province': '1;北京',
-		'phone': '13552266949',
-		'address_id': 1,
-		'name': '范晓宇',
-		'address': '酒仙桥6号院电子国际总部',
-		'default': 1,
-		'country': '中国',
-		'region': '5;朝阳区'
-	}, {
-		'province': '11;河北',
-		'phone': '17801078112',
-		'address_id': 2,
-		'name': '董哲',
-		'address': '中华南大街166号神秘基地',
-		'default': 0,
-		'country': '中国',
-		'region': '1;石家庄'
-	}],
-	'reason': ''
-}
 function ajax ({
 	url,
 	params = {},
@@ -85,7 +63,43 @@ export default {
 		})
 	},
 	getAddress (cb) {
-		setTimeout(() => cb(_address), 100)
+		ajax({
+			url: '/api/address/all',
+			method: 'post',
+			cb
+		})
+	},
+	addAddress ({ params, cb }) {
+		ajax({
+			url: '/api/address/add',
+			method: 'post',
+			params,
+			cb
+		})
+	},
+	deleteAddress ({ params, cb }) {
+		ajax({
+			url: '/api/address/delete',
+			method: 'post',
+			params,
+			cb
+		})
+	},
+	chooseDefultAddress ({ params, cb }) {
+		ajax({
+			url: '/api/address/default',
+			method: 'post',
+			params,
+			cb
+		})
+	},
+	editAddress ({ params, cb }) {
+		ajax({
+			url: '/api/address/modify',
+			method: 'post',
+			params,
+			cb
+		})
 	},
 	addToCart ({ params, cb }) {
 		ajax({

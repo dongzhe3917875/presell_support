@@ -7,11 +7,14 @@
 					<span>手机: {{item.phone}}; 姓名：{{item.name}}</span>
 				</p>
 				<p>
-					<span>{{item.province|city}};{{item.region|city}};{{item.address}}</span>
+					<span>{{item.province|city}};{{item.municipality|city}};{{item.region|city}};{{item.address}}</span>
+					<span v-if="item.default">默认</span>
 				</p>
 			</div>
-			<div class='addressOperation address'>
+			<div class='address'>
+				<label @click="chooseDefult(item)"><span v-if="item.default" class="choose circle"></span><span v-else class="circle unchoose"></span>默认地址</label>
 				<a href="javascript:;" @click='editAddress(item)'>编辑</a>
+				<a href="javascript:;" @click='deleteAddress(item)'>删除</a>
 			</div>
 			<li>
 		</ul>
@@ -22,14 +25,27 @@
 	.address_list li {
 		cursor: pointer;
 		.address {
-			display: inline-block;
-			vertical-align: middle;
+			&.addressInfo {
+				display: inline-block;
+				vertical-align: middle;
+				width: 300px;
+			}
+			.circle {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #f90;
+				border-radius: 50%;
+				&.choose {
+					background-color: #f90;
+				}
+			}
 		}
 	}
 </style>
 <script>
 import { addressList } from '../vuex/getters'
-import { chooseAddress, getAddress } from '../vuex/actions'
+import { chooseAddress, getAddress, deleteAddressAction, chooseDefultAction } from '../vuex/actions'
 export default {
 	vuex: {
 		getters: {
@@ -37,7 +53,9 @@ export default {
 		},
 		actions: {
 			chooseAddress,
-			getAddress
+			getAddress,
+			deleteAddressAction,
+			chooseDefultAction
 		}
 	},
 	methods: {
@@ -51,18 +69,36 @@ export default {
 					type: 'default',
 					data: {
 						province: '1;北京',
-						region: '1;东城区'
+						municipality: '1;东城区',
+						region: '0;请选择'
 					}
 				}
 			})
+		},
+		deleteAddress (item) {
+			var params = {
+				address_id: item.id
+			}
+			this.deleteAddressAction(params)
+		},
+		chooseDefult (item) {
+			var params = {
+				address_id: item.id
+			}
+			this.chooseDefultAction(params, this.$router)
 		},
 		editAddress (item) {
 			this.$router.push({
 				name: 'address',
 				params: {
-					type: 'default',
+					type: 'edit',
 					data: {
+						address_id: item.id,
+						name: item.name,
+						phone: item.phone,
+						address: item.address,
 						province: item.province,
+						municipality: item.municipality,
 						region: item.region
 					}
 				}

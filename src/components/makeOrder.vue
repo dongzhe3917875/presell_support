@@ -2,14 +2,17 @@
 	<div>
 		<div class='address'>
 			<a href="javascript:;" @click='addAddress'>
-				<ul>
+				<ul v-if="CchooseAddr">
 					<li>
 						<span>手机: {{CchooseAddr.phone}}; 姓名：{{CchooseAddr.name}}</span>
 					</li>
 					<li>
-						<span>{{CchooseAddr.province}}; {{CchooseAddr.address}}</span>
+					<span>{{CchooseAddr.province|city}};{{CchooseAddr.municipality|city}};{{CchooseAddr.region|city}};{{CchooseAddr.address}}</span>
 					</li>
 				</ul>
+				<div v-else>
+						去添加地址
+				</div>
 			</a>
 			<!-- <a href="javascript:;" @click='chooseAddress'>选择地址</a> -->
 		</div>
@@ -75,9 +78,21 @@ export default {
 	methods: {
 		addAddress () {
 			this.address = true
+			if (this.CchooseAddr) {
+				return this.$router.push({
+					name: 'addressList'
+				})
+			}
 			this.$router.push({
-				name: 'addressList'
-				// params: { type: 'default', data: null }
+				name: 'address',
+				params: {
+					type: 'default',
+					data: {
+						province: '1;北京',
+						municipality: '1;东城区',
+						region: '0;请选择'
+					}
+				}
 			})
 		},
 		makePurchase () {
