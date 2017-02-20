@@ -5,7 +5,21 @@ export const getSimpleProduct = ({ dispatch }) => {
 		dispatch(types.SIMPLE_PRODUCT, simpleProduct)
 	})
 }
-
+export const getInstanceInfo = ({ dispatch }, cb) => {
+	shop.getInstanceInfo(instanceInfo => {
+		dispatch(types.INSTANCE_INFO, instanceInfo)
+		cb(instanceInfo)
+	})
+}
+export const getInstanceInfoTest = ({ dispatch }) => {
+	shop.getInstanceInfoTest(instanceInfo => {
+		console.log(instanceInfo)
+	})
+}
+export const changeInstanceData = ({ dispatch, state }, index, itemindex, url) => {
+	dispatch(types.CHANGE_INSTANCE_CLASS, index, itemindex)
+	dispatch(types.CHANGE_INSTANCE_SENDATA)
+}
 export const changeClass = ({ dispatch }, index, itemindex) => {
 	dispatch(types.CHANGE_CLASS, index, itemindex)
 }

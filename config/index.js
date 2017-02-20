@@ -26,15 +26,20 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/dongzhe': {
-          target: 'http://45.62.108.67',
+          target: 'http://dongzhetech.cn:8080',
           changeOrigin: true
       },
       '/image': {
-          target: 'http://45.62.108.67',
+          target: 'http://dongzhe.ml',
           changeOrigin: true
       },
       '/api': {
         target: 'http://preseller.gsteps.cn',
+        changeOrigin: true
+      },
+      '/project': {
+        target: 'https://test.qiyun.360.cn',
+        // target: 'http://10.115.8.254',
         changeOrigin: true
       }
     },

@@ -18,6 +18,121 @@ const _products = [{
 	'price': 19.99,
 	'inventory': 5
 }]
+const _instanceInfo = {
+	'res': {
+		'properties': [{
+			'itemType': 'choose',
+			'name': 'area',
+			'current': 2,
+			'type': ['sh1', 'sh2', 'bj1', 'sh3'],
+			'show': true,
+			'type_cn': [{
+				name: '上海1区',
+				show: true
+			}, {
+				name: '上海2区',
+				show: true
+			}, {
+				name: '北京A区',
+				show: true
+			}, {
+				name: '上海3区',
+				show: true
+			}]
+		}, {
+			'itemType': 'choose',
+			'name': 'feeType',
+			'current': 0,
+			'type': ['count', 'month'],
+			'show': true,
+			'type_cn': [{
+				name: '按量',
+				show: true
+			}, {
+				name: '包月',
+				show: true
+			}]
+		}, {
+			'itemType': 'select',
+			'name': 'image',
+			'type': ['image1', 'image2', 'image3', 'image4'],
+			'show': false,
+			'type_cn': [{
+				value: 'image1',
+				name: '镜像1',
+				show: true
+			}, {
+				value: 'image2',
+				name: '镜像2',
+				show: true
+			}, {
+				value: 'image3',
+				name: '镜像3',
+				show: true
+			}, {
+				value: 'image4',
+				name: '镜像4',
+				show: true
+			}]
+		}, {
+			'itemType': 'choose',
+			'name': 'cpu',
+			'current': 1,
+			'type': ['2', '4', '8', '16'],
+			'show': true,
+			'type_cn': [{
+				name: '2核',
+				show: true
+			}, {
+				name: '4核',
+				show: true
+			}, {
+				name: '8核',
+				show: true
+			}, {
+				name: '16核',
+				show: true
+			}]
+		}, {
+			'itemType': 'choose',
+			'name': 'ram',
+			'current': 2,
+			'type': ['1', '2', '4', '8', '16', '30', '32', '48'],
+			'show': true,
+			'type_cn': [{
+				name: '1G',
+				show: false
+			}, {
+				name: '2G',
+				show: true
+			}, {
+				name: '4G',
+				show: true
+			}, {
+				name: '8G',
+				show: true
+			}, {
+				name: '16G',
+				show: true
+			}, {
+				name: '30G',
+				show: false
+			}, {
+				name: '32G',
+				show: false
+			}, {
+				name: '48G',
+				show: false
+			}]
+		}],
+		'price': 101,
+		'navigation_img': 'img/navigation.jpg',
+		'thumbnails': 'img/thumbnails.jpg',
+		'name': 'G-STEP冬季卫衣',
+		'unit': '1'
+	}
+}
+
 function ajax ({
 	url,
 	params = {},
@@ -46,9 +161,18 @@ export default {
 	getProducts (cb) {
 		setTimeout(() => cb(_products), 100)
 	},
+	getInstanceInfo (cb) {
+		setTimeout(() => cb(_instanceInfo), 100)
+	},
 	getNumberInfo (cb) {
 		ajax({
 			url: '/dongzhe/number_info',
+			cb: cb
+		})
+	},
+	getInstanceInfoTest (cb) {
+		ajax({
+			url: '/project/instances/instance_list',
 			cb: cb
 		})
 	},

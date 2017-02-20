@@ -4,6 +4,9 @@ import productList from './components/productList'
 import makeOrder from './components/makeOrder'
 import address from './components/address'
 import addressList from './components/addressList'
+import createInstance from './components/createInstance'
+import Instances from './components/Instances'
+import PromiseComponent from './components/Promise'
 export default [{
 	path: '/',
 	component: Index
@@ -24,4 +27,16 @@ export default [{
 	path: '/address_list',
 	name: 'addressList',
 	component: addressList
+}, {
+	path: '/create_instance',
+	name: 'createInstance',
+	component: createInstance
+}, {
+	path: '/instances',
+	name: 'instances',
+	component: Instances
+}, {
+	path: '/promise',
+	name: 'promise',
+	component: PromiseComponent
 }]

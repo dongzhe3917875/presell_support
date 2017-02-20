@@ -5,6 +5,7 @@ import simpleProduct from './modules/simpleProduct'
 import productList from './modules/productList'
 import makeOrder from './modules/makeOrder'
 import address from './modules/address'
+import createInstance from './modules/createInstance'
 Vue.use(Vuex)
 Vue.config.debug = true
 const debug = process.env.NODE_ENV !== 'production'
@@ -13,7 +14,8 @@ export default new Vuex.Store({
 		productList,
 		simpleProduct,
 		makeOrder,
-		address
+		address,
+		createInstance
 	},
 	strict: debug
 })
